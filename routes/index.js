@@ -1,11 +1,11 @@
 import AppController from '../controllers/AppController';
 import { Router } from 'express';
-import UsersCOntroller from '../controllers/UsersController';
+import UsersCOntroller from '../controllers/dUsersController';
 
 const router = Router();
 
 router.get('/status', AppController.getStatus);
 router.get('/stats', AppController.getStats);
-router.get('/users', UsersCOntroller.postNew);
+router.post('/users', UsersCOntroller.postNew);
 
 module.exports = router;
