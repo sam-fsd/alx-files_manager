@@ -4,7 +4,7 @@ import dbClient from '../utils/db';
 import redisClient from '../utils/redis';
 
 class AuthController {
-  static async connect (req, res) {
+  static async getConnect (req, res) {
     const authData = req.header('Authorization');
     let userCredentials = authData.split(' ')[1];
     const buff = Buffer.from(userCredentials, 'base64');
