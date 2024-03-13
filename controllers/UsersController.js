@@ -1,8 +1,8 @@
 import dbClient from '../utils/db';
 import sha1 from 'sha1';
 
-class UsersCOntroller {
-  static postNew(req, res) {
+class UsersController {
+  static postNew (req, res) {
     const { email } = req.body;
     const { password } = req.body;
 
@@ -16,6 +16,7 @@ class UsersCOntroller {
     }
 
     const users = dbClient.db.collection('users');
+    console.log(users);
     users.findOne({ email }, (err, user) => {
       if (user) {
         res.status(400).json({ error: 'Already exist' });
@@ -24,7 +25,7 @@ class UsersCOntroller {
         users
           .insertOne({
             email,
-            password: hashedPassword,
+            password: hashedPassword
           })
           .then((result) => {
             res.status(201).json({ id: result.insertedId, email });
@@ -34,4 +35,4 @@ class UsersCOntroller {
   }
 }
 
-module.exports = UsersCOntroller;
+module.exports = UsersController;
